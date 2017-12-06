@@ -10,17 +10,31 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var labelText: UILabel!
+    var state = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        print("Merhaba Dünya")
+        imageView.image = UIImage(named: "1.jpg")
+        labelText.text = "1.Resim"
+        imageView.isUserInteractionEnabled = true
+        let gesturedRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.operations))
+        imageView.addGestureRecognizer(gesturedRecognizer)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    @objc func operations (){
+        if state == true {
+            imageView.image = UIImage(named: "2.jpg")
+            labelText.text = "2.Resim"
+            state = false
+        }
+        else if state == false {
+            imageView.image = UIImage(named: "1.jpg")
+            labelText.text = "1.Resim"
+            state = true
+        }
     }
-
-
 }
 
